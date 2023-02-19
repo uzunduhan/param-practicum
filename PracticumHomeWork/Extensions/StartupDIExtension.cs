@@ -21,9 +21,7 @@ namespace PracticumHomeWork.Extensions
             services.AddScoped<IGenericRepository<Movie>, GenericRepository<Movie>>();
             services.AddScoped<IGenericRepository<User>, GenericRepository<User>>();
 
-
-            //services.AddScoped<IAccountRepository, AccountRepository>();
-            //services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<ICommonService, CommonService>();
 
 
             services.AddScoped<IMovieService, MovieService>();

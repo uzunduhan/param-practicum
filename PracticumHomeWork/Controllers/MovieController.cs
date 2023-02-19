@@ -47,6 +47,8 @@ namespace PracticumHomeWork.Controllers
             MovieDtoValidator validator = new MovieDtoValidator();
             validator.ValidateAndThrow(newMovie);
 
+            await _movieService.isMovieExistByTitle(newMovie.Title);
+
             await _movieService.InsertAsync(newMovie);
 
             return Ok();

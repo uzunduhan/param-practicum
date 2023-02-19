@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PracticumHomeWork.Dto.Dtos;
 using PracticumHomeWork.Service.Abstract;
@@ -43,6 +42,8 @@ namespace PracticumHomeWork.Controllers
         {
             UserDtoValidator validator = new UserDtoValidator();
             validator.ValidateAndThrow(user);
+
+            await _userService.isUserExistByEmail(user.Email);
 
             await _userService.InsertAsync(user);
 

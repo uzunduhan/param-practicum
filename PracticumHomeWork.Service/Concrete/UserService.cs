@@ -27,16 +27,15 @@ namespace PracticumHomeWork.Service.Concrete
         }
 
 
-        public async Task<bool> isUserExistByEmail(string mail)
+        public async Task isUserExistByEmail(string mail)
         {
             var user = await _context.Users.Where(x => x.Email == mail).FirstOrDefaultAsync();
 
-            if (user == null)
+            if (user is not null)
             {
-                return false;
+                throw new InvalidOperationException("the user is already recorded");
             }
 
-            return true;
         }
 
         public async Task<UserDetailViewModel> getUserByEmail(string email)

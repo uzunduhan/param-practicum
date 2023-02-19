@@ -7,8 +7,8 @@ namespace PracticumHomeWork.Validations
     {
         public UserDtoValidator()
         {
-            RuleFor(x => x.Email).NotEmpty().WithMessage("email cannot be empty").MinimumLength(7).WithMessage("email character count must be greater than 7");
-            RuleFor(x => x.Password).NotEmpty().WithMessage("password cannot be empty").MinimumLength(6).WithMessage("password character count must be greater than 6");
+            RuleFor(x => x.Email).NotEmpty().MinimumLength(7);
+            RuleFor(x => x.Password).NotEmpty().MinimumLength(6);
         }
     }
 }

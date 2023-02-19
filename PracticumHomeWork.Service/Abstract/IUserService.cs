@@ -6,7 +6,7 @@ namespace PracticumHomeWork.Service.Abstract
 {
     public interface IUserService : IBaseService<UserDto, User>
     {
-        public Task<bool> isUserExistByEmail(string email);
+        public Task isUserExistByEmail(string email);
         public Task<UserDetailViewModel> getUserByEmail(string email);
 
     }

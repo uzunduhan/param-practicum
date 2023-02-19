@@ -11,10 +11,9 @@ builder.Logging.AddDebug();
 builder.Logging.AddConsole();
 builder.Services.AddServicesDI();
 
-// Add services to the container.
+
 
 builder.Services.AddControllers().AddNewtonsoftJson();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -43,7 +42,6 @@ using (var scope = app.Services.CreateScope())
 }
 
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

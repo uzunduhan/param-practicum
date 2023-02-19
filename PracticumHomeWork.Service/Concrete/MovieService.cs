@@ -9,6 +9,7 @@ using PracticumHomeWork.Data.UnitOfWork.Abstract;
 using PracticumHomeWork.Dto.Dtos;
 using PracticumHomeWork.Service.Abstract;
 using PracticumHomeWork.ViewModel.ViewModels.Movie;
+using System.Text.RegularExpressions;
 
 namespace PracticumHomeWork.Service.Concrete
 {
@@ -18,13 +19,15 @@ namespace PracticumHomeWork.Service.Concrete
         private readonly IGenericRepository<Movie> genericRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly ICommonService _commonService;
 
-        public MovieService(DatabaseContext context, IGenericRepository<Movie> genericRepository, IUnitOfWork unitOfWork, IMapper mapper) : base(genericRepository, mapper, unitOfWork)
+        public MovieService(DatabaseContext context, IGenericRepository<Movie> genericRepository, IUnitOfWork unitOfWork, IMapper mapper, ICommonService commonService) : base(genericRepository, mapper, unitOfWork)
         {
             _context = context;
             this.genericRepository = genericRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _commonService = commonService;
         }
 
 
@@ -71,16 +74,19 @@ namespace PracticumHomeWork.Service.Concrete
             return vm;
         }
 
-        public async Task<bool> isMovieExistByTitle(string title)
+        public async Task isMovieExistByTitle(string title)
         {
-            var movie = await _context.Movies.Where(x => x.Title == title).FirstOrDefaultAsync();
+            var titleWithSpacesDeleted = _commonService.getDataWithSpacesDeleted(title);
 
-            if (movie == null)
+            var movie = from movies in _context.Movies
+                        where _commonService.getDataWithSpacesDeleted(movies.Title).ToLower() == titleWithSpacesDeleted.ToLower()
+                        select movies;
+
+            if (movie is not null)
             {
-                return false;
+                throw new InvalidOperationException("the movie is already recorded");
             }
 
-            return true;
         }
 
 
