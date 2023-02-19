@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using PracticumHomeWork.DTOs;
-using PracticumHomeWork.Services;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using PracticumHomeWork.Dto.Dtos;
+using PracticumHomeWork.Service.Abstract;
+using PracticumHomeWork.Validations;
 
 namespace PracticumHomeWork.Controllers
 {
@@ -19,7 +22,7 @@ namespace PracticumHomeWork.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
-            var users = await _userService.GetUsers();
+            var users = await _userService.GetAllAsync();
 
             return Ok(users);
         }
@@ -36,19 +39,24 @@ namespace PracticumHomeWork.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> AddUser([FromBody] CreateUserModel user)
+        public async Task<IActionResult> AddUser([FromBody] UserDto user)
         {
-            await _userService.AddUser(user);
+            UserDtoValidator validator = new UserDtoValidator();
+            validator.ValidateAndThrow(user);
+
+            await _userService.InsertAsync(user);
 
             return Ok();
         }
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser(int id, [FromBody] UpdateUserModel updatedUser)
+        public async Task<IActionResult> UpdateUser(int id, [FromBody] UserDto updatedUser)
         {
+            UserDtoValidator validator = new UserDtoValidator();
+            validator.ValidateAndThrow(updatedUser);
 
-            await _userService.UpdateUser(id, updatedUser);
+            await _userService.UpdateAsync(id, updatedUser);
 
             return Ok();
         }
@@ -56,7 +64,7 @@ namespace PracticumHomeWork.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteUser([FromQuery] int id)
         {
-            await _userService.DeleteUser(id);
+            await _userService.RemoveAsync(id);
 
             return NoContent();
         }

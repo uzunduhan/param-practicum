@@ -1,21 +1,15 @@
 using Microsoft.EntityFrameworkCore;
-using PracticumHomeWork.UnitOfWork.Abstract;
-using PracticumHomeWork.UnitOfWork.Concrete;
-using System.Reflection;
+using PracticumHomeWork.Data.DBOperations;
 using PracticumHomeWork.Extensions;
 using PracticumHomeWork.Middlewares;
-using PracticumHomeWork.Services;
-using PracticumHomeWork.DBOperations;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Logging.ClearProviders();
 builder.Logging.AddDebug();
 builder.Logging.AddConsole();
-
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IMovieService, MovieService>();
+builder.Services.AddServicesDI();
 
 // Add services to the container.
 

@@ -1,8 +1,10 @@
+using FluentValidation;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using PracticumHomeWork.Models;
-using PracticumHomeWork.DTOs;
-using PracticumHomeWork.Services;
+using PracticumHomeWork.Data.Models;
+using PracticumHomeWork.Dto.Dtos;
+using PracticumHomeWork.Service.Abstract;
+using PracticumHomeWork.Validations;
 
 namespace PracticumHomeWork.Controllers
 {
@@ -23,7 +25,7 @@ namespace PracticumHomeWork.Controllers
         //list all movies
         public async Task<IActionResult> GetMovies()
         {
-            var movieList = await _movieService.GetMovies();
+            var movieList = await _movieService.GetAllAsync();
 
             return Ok(movieList);
         }
@@ -33,16 +35,19 @@ namespace PracticumHomeWork.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByID(int id)
         {
-            var movie = await _movieService.GetMovieByID(id);
+            var movie = await _movieService.GetByIdAsync(id);
 
             return Ok(movie);
         }
 
         //add movie
         [HttpPost]
-        public async Task<IActionResult> AddMovie([FromBody] CreateMovieModel newMovie)
+        public async Task<IActionResult> AddMovie([FromBody] MovieDto newMovie)
         {
-            await _movieService.AddMovie(newMovie);
+            MovieDtoValidator validator = new MovieDtoValidator();
+            validator.ValidateAndThrow(newMovie);
+
+            await _movieService.InsertAsync(newMovie);
 
             return Ok();
         }
@@ -50,10 +55,12 @@ namespace PracticumHomeWork.Controllers
 
         //update movie
         [HttpPut]
-        public async Task<IActionResult> UpdateMovie([FromQuery] int id, [FromBody] UpdateMovieModel updatedMovie)
+        public async Task<IActionResult> UpdateMovie([FromQuery] int id, [FromBody] MovieDto updatedMovie)
         {
+            MovieDtoValidator validator = new MovieDtoValidator();
+            validator.ValidateAndThrow(updatedMovie);
 
-            await _movieService.UpdateMovie(id, updatedMovie);
+            await _movieService.UpdateAsync(id, updatedMovie);
 
             return Ok();
         }
@@ -62,7 +69,7 @@ namespace PracticumHomeWork.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteMovie([FromQuery] int id)
         {
-            await _movieService.DeleteMovie(id);
+            await _movieService.RemoveAsync(id);
 
             return NoContent();
         }
