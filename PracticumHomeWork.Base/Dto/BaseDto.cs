@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PracticumHomeWork.Base.Dto
 {
@@ -8,11 +7,11 @@ namespace PracticumHomeWork.Base.Dto
 
 
         [Display(Name = "Created At")]
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
 
         [MaxLength(500)]
         [Display(Name = "Created By")]
-        public string CreatedBy { get; set; }
+        public string? CreatedBy { get; set; }
     }
 }

@@ -9,7 +9,6 @@ using PracticumHomeWork.Data.UnitOfWork.Abstract;
 using PracticumHomeWork.Dto.Dtos;
 using PracticumHomeWork.Service.Abstract;
 using PracticumHomeWork.ViewModel.ViewModels.Movie;
-using System.Text.RegularExpressions;
 
 namespace PracticumHomeWork.Service.Concrete
 {
@@ -17,17 +16,17 @@ namespace PracticumHomeWork.Service.Concrete
     {
         private readonly DatabaseContext _context;
         private readonly IGenericRepository<Movie> genericRepository;
+        private readonly IMovieRepository _movieRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly ICommonService _commonService;
 
-        public MovieService(DatabaseContext context, IGenericRepository<Movie> genericRepository, IUnitOfWork unitOfWork, IMapper mapper, ICommonService commonService) : base(genericRepository, mapper, unitOfWork)
+        public MovieService(DatabaseContext context, IGenericRepository<Movie> genericRepository, IMovieRepository movieRepository, IUnitOfWork unitOfWork, IMapper mapper) : base(genericRepository, mapper, unitOfWork)
         {
             _context = context;
             this.genericRepository = genericRepository;
+            _movieRepository = movieRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-            _commonService = commonService;
         }
 
 
@@ -74,15 +73,30 @@ namespace PracticumHomeWork.Service.Concrete
             return vm;
         }
 
+        public async Task<MoviesViewModel> GetSingleMovieByIdWithGenreAsync(int id)
+        {
+            var movie = await _movieRepository.getSingleMovieByIdWithGenreAsync(id);
+            MoviesViewModel vm = _mapper.Map<MoviesViewModel>(movie);
+            return vm;
+        }
+
+        public async Task<List<MoviesViewModel>> GetMoviesWithGenreAsync()
+        {
+            var movie = await _movieRepository.getMoviesWithGenreAsync();
+            List<MoviesViewModel> vm = _mapper.Map<List<MoviesViewModel>>(movie);
+            return vm;
+        }
+
         public async Task isMovieExistByTitle(string title)
         {
-            var titleWithSpacesDeleted = _commonService.getDataWithSpacesDeleted(title);
-
             var movie = from movies in _context.Movies
-                        where _commonService.getDataWithSpacesDeleted(movies.Title).ToLower() == titleWithSpacesDeleted.ToLower()
+                        where movies.Title.ToLower() == title.ToLower()
                         select movies;
 
-            if (movie is not null)
+
+
+
+            if (movie.Any())
             {
                 throw new InvalidOperationException("the movie is already recorded");
             }

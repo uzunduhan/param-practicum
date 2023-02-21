@@ -6,8 +6,10 @@ namespace PracticumHomeWork.Data.Models
     {
         public string Title { get; set; }
         public int? GenreId { get; set; }
+        public Genre Genre { get; set; }
         public int? Duration { get; set; }
         public float? RatingScore { get; set; }
         public DateTime? ReleaseDate { get; set; }
+ 
     }
 }

@@ -12,5 +12,7 @@ namespace PracticumHomeWork.Service.Abstract
         public Task<List<MoviesViewModel>> GetMoviesByFiltering(MovieParameters movieParameters);
         public Task isMovieExistByTitle(string title);
         public Task PatchMovie(int id, JsonPatchDocument updatedMovie);
+        public Task<MoviesViewModel> GetSingleMovieByIdWithGenreAsync(int id);
+        public Task<List<MoviesViewModel>> GetMoviesWithGenreAsync();
     }
 }

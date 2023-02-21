@@ -20,13 +20,13 @@ namespace PracticumHomeWork.Extensions
 
             services.AddScoped<IGenericRepository<Movie>, GenericRepository<Movie>>();
             services.AddScoped<IGenericRepository<User>, GenericRepository<User>>();
-
-            services.AddScoped<ICommonService, CommonService>();
-
+            services.AddScoped<IGenericRepository<Genre>, GenericRepository<Genre>>();
 
             services.AddScoped<IMovieService, MovieService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IGenreService, GenreService>();
 
+            services.AddScoped<IMovieRepository, MovieRepository>();
 
             // mapper
             var mapperConfig = new MapperConfiguration(cfg =>

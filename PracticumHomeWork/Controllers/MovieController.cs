@@ -1,4 +1,5 @@
 using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using PracticumHomeWork.Data.Models;
@@ -25,7 +26,7 @@ namespace PracticumHomeWork.Controllers
         //list all movies
         public async Task<IActionResult> GetMovies()
         {
-            var movieList = await _movieService.GetAllAsync();
+            var movieList = await _movieService.GetMoviesWithGenreAsync();
 
             return Ok(movieList);
         }
@@ -35,7 +36,7 @@ namespace PracticumHomeWork.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByID(int id)
         {
-            var movie = await _movieService.GetByIdAsync(id);
+            var movie = await _movieService.GetSingleMovieByIdWithGenreAsync(id);
 
             return Ok(movie);
         }
@@ -45,7 +46,17 @@ namespace PracticumHomeWork.Controllers
         public async Task<IActionResult> AddMovie([FromBody] MovieDto newMovie)
         {
             MovieDtoValidator validator = new MovieDtoValidator();
+
             validator.ValidateAndThrow(newMovie);
+            //ValidationResult result = validator.Validate(newMovie);
+
+            //if(!result.IsValid) 
+            //{
+            //    foreach (var error in result.Errors)
+            //    {
+            //             throw new InvalidOperationException(error.ErrorMessage);
+            //    }
+            //}
 
             await _movieService.isMovieExistByTitle(newMovie.Title);
 
