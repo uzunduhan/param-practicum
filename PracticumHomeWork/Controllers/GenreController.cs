@@ -1,11 +1,9 @@
 ﻿using FluentValidation;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PracticumHomeWork.Data.Repository.Abstract;
 using PracticumHomeWork.Dto.Dtos;
 using PracticumHomeWork.Service.Abstract;
-using PracticumHomeWork.Service.Concrete;
 using PracticumHomeWork.Service.Validations;
-using PracticumHomeWork.Validations;
 
 namespace PracticumHomeWork.Controllers
 {
@@ -24,7 +22,7 @@ namespace PracticumHomeWork.Controllers
 
         public async Task<IActionResult> GetGenres()
         {
-            var genreList = await _genreService.GetAllAsync();
+            var genreList = await _genreService.GetGenresWithMoviesAsync();
 
             return Ok(genreList);
         }
@@ -33,7 +31,7 @@ namespace PracticumHomeWork.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByID(int id)
         {
-            var genre = await _genreService.GetByIdAsync(id);
+            var genre = await _genreService.GetSingleGenreByIdWithMoviesAsync(id);
 
             return Ok(genre);
         }

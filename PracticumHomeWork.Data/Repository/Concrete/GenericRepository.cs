@@ -18,22 +18,22 @@ namespace PracticumHomeWork.Data.Repository.Concrete
         }
 
 
-        public async Task<IEnumerable<Entity>> GetAllAsync()
+        public virtual async Task<IEnumerable<Entity>> GetAllAsync()
         {
             return await entities.AsNoTracking().ToListAsync();
         }
 
-        public async Task<Entity> GetByIdAsync(int entityId)
+        public virtual async Task<Entity> GetByIdAsync(int entityId)
         {
             return await entities.FindAsync(entityId);
         }
 
-        public async Task InsertAsync(Entity entity)
+        public virtual async Task InsertAsync(Entity entity)
         {
             await entities.AddAsync(entity);
         }
 
-        public void RemoveAsync(Entity entity)
+        public virtual void RemoveAsync(Entity entity)
         {
 
             var type = typeof(Entity).Name;
@@ -43,7 +43,7 @@ namespace PracticumHomeWork.Data.Repository.Concrete
 
         }
 
-        public void Update(Entity entity)
+        public virtual void Update(Entity entity)
         {
             entities.Update(entity);
         }

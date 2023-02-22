@@ -2,6 +2,7 @@ using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.IIS.Core;
 using PracticumHomeWork.Data.Models;
 using PracticumHomeWork.Dto.Dtos;
 using PracticumHomeWork.Service.Abstract;
@@ -81,9 +82,9 @@ namespace PracticumHomeWork.Controllers
         //delete movie by id
         [HttpDelete]
         public async Task<IActionResult> DeleteMovie([FromQuery] int id)
-        {
+        { 
             await _movieService.RemoveAsync(id);
-
+            
             return NoContent();
         }
 

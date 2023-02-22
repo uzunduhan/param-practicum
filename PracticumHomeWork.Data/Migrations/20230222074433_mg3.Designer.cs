@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PracticumHomeWork.Data.DBOperations;
 
@@ -11,9 +12,10 @@ using PracticumHomeWork.Data.DBOperations;
 namespace PracticumHomeWork.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230222074433_mg3")]
+    partial class mg3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,7 +66,7 @@ namespace PracticumHomeWork.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Directors");
+                    b.ToTable("Director");
                 });
 
             modelBuilder.Entity("PracticumHomeWork.Data.Models.Genre", b =>
@@ -176,8 +178,7 @@ namespace PracticumHomeWork.Data.Migrations
                 {
                     b.HasOne("PracticumHomeWork.Data.Models.Genre", "Genre")
                         .WithMany("Movies")
-                        .HasForeignKey("GenreId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("GenreId");
 
                     b.Navigation("Genre");
                 });

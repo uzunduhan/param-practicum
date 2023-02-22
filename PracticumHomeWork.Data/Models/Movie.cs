@@ -10,6 +10,7 @@ namespace PracticumHomeWork.Data.Models
         public int? Duration { get; set; }
         public float? RatingScore { get; set; }
         public DateTime? ReleaseDate { get; set; }
- 
+        public ICollection<Director> Directors { get; set; }
+
     }
 }

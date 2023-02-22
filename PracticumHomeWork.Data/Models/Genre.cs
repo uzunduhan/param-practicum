@@ -6,6 +6,6 @@ namespace PracticumHomeWork.Data.Models
     {
         public string Name { get; set; }
         public bool? IsActive { get; set; } = true;
-        public List<Movie> Movies { get; set; }
+        public ICollection<Movie> Movies { get; }
     }
 }

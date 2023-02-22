@@ -82,8 +82,8 @@ namespace PracticumHomeWork.Service.Concrete
 
         public async Task<List<MoviesViewModel>> GetMoviesWithGenreAsync()
         {
-            var movie = await _movieRepository.getMoviesWithGenreAsync();
-            List<MoviesViewModel> vm = _mapper.Map<List<MoviesViewModel>>(movie);
+            var movies = await _movieRepository.getMoviesWithGenreAsync();
+            List<MoviesViewModel> vm = _mapper.Map<List<MoviesViewModel>>(movies);
             return vm;
         }
 
