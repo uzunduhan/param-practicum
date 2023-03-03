@@ -1,18 +1,20 @@
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Server.IIS.Core;
 using PracticumHomeWork.Data.Models;
 using PracticumHomeWork.Dto.Dtos;
 using PracticumHomeWork.Service.Abstract;
-using PracticumHomeWork.Validations;
+using PracticumHomeWork.Service.Validations;
 
 namespace PracticumHomeWork.Controllers
 {
 
     [ApiController]
     [Route("[controller]s")]
+    [Authorize]
     public class MovieController : ControllerBase
     {
         private readonly IMovieService _movieService;

@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PracticumHomeWork.Dto.Dtos;
 using PracticumHomeWork.Service.Abstract;
@@ -9,6 +10,7 @@ namespace PracticumHomeWork.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+ 
     public class DirectorController : ControllerBase
     {
         private readonly IDirectorService _directorService;
@@ -18,7 +20,7 @@ namespace PracticumHomeWork.Controllers
             _directorService = directorService;
         }
         [HttpGet]
-
+        [Authorize]
         public async Task<IActionResult> GetDirectors()
         {
             var directorList = await _directorService.GetDirectorsWithMoviesAsync();

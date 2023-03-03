@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PracticumHomeWork.Data.Repository.Abstract;
 using PracticumHomeWork.Dto.Dtos;
@@ -9,6 +10,7 @@ namespace PracticumHomeWork.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class GenreController : ControllerBase
     {
         private readonly IGenreService _genreService;

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using PracticumHomeWork.Dto.Dtos;
 
-namespace PracticumHomeWork.Validations
+namespace PracticumHomeWork.Service.Validations
 {
     public class UserDtoValidator : AbstractValidator<UserDto>
     {

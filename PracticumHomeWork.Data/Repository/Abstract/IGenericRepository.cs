@@ -7,6 +7,7 @@
         void Update(TEntity entity);
         Task<IEnumerable<TEntity>> GetAllAsync();
         Task<TEntity> GetByIdAsync(int entityId);
+        IEnumerable<TEntity> Where(System.Linq.Expressions.Expression<Func<TEntity, bool>> where);
 
     }
 }

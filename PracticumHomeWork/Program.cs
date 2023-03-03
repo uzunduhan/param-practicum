@@ -6,16 +6,25 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var conf = builder.Configuration;
+
+
+
+
 builder.Logging.ClearProviders();
 builder.Logging.AddDebug();
 builder.Logging.AddConsole();
+
+builder.Services.AddJwtConfig(conf);
 builder.Services.AddServicesDI();
+builder.Services.AddJwtBearerAuthentication();
 
 
 
 builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCustomizeSwagger();
 
 builder.Services.AddCors(options => options.AddPolicy(name: "apiorigins",
     policy =>
@@ -51,6 +60,7 @@ if (app.Environment.IsDevelopment())
 app.UseCors("apiorigins");
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
 
 app.UseAuthorization();
 

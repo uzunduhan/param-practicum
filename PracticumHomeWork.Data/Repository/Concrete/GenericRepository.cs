@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PracticumHomeWork.Data.Repository.Abstract;
 using PracticumHomeWork.Data.DBOperations;
+using System.Linq.Expressions;
 
 namespace PracticumHomeWork.Data.Repository.Concrete
 {
@@ -46,6 +47,11 @@ namespace PracticumHomeWork.Data.Repository.Concrete
         public virtual void Update(Entity entity)
         {
             entities.Update(entity);
+        }
+
+        public IEnumerable<Entity> Where(Expression<Func<Entity, bool>> where)
+        {
+            return entities.Where(where).AsQueryable();
         }
     }
 }

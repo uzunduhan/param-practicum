@@ -5,15 +5,17 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PracticumHomeWork", "PracticumHomeWork\PracticumHomeWork.csproj", "{1516B53D-C16D-4A77-962C-56758604346C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PracticumHomeWork.Base", "PracticumHomeWork.Base\PracticumHomeWork.Base.csproj", "{67A220A7-E8B7-4B51-A286-96CB2B1767EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PracticumHomeWork.Base", "PracticumHomeWork.Base\PracticumHomeWork.Base.csproj", "{67A220A7-E8B7-4B51-A286-96CB2B1767EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PracticumHomeWork.Data", "PracticumHomeWork.Data\PracticumHomeWork.Data.csproj", "{16784A96-30EC-4388-8B79-514C53F9CB46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PracticumHomeWork.Data", "PracticumHomeWork.Data\PracticumHomeWork.Data.csproj", "{16784A96-30EC-4388-8B79-514C53F9CB46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PracticumHomeWork.Dto", "PracticumHomeWork.Dto\PracticumHomeWork.Dto.csproj", "{2C4680F5-7B60-4276-ABBB-5A93691626F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PracticumHomeWork.Dto", "PracticumHomeWork.Dto\PracticumHomeWork.Dto.csproj", "{2C4680F5-7B60-4276-ABBB-5A93691626F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PracticumHomeWork.Service", "PracticumHomeWork.Service\PracticumHomeWork.Service.csproj", "{3DB5711A-C521-40D3-B9B7-84BB7444E6E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PracticumHomeWork.Service", "PracticumHomeWork.Service\PracticumHomeWork.Service.csproj", "{3DB5711A-C521-40D3-B9B7-84BB7444E6E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PracticumHomeWork.ViewModel", "PracticumHomeWork.ViewModel\PracticumHomeWork.ViewModel.csproj", "{F2C9336D-2B42-469E-89BD-765F3BA00508}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PracticumHomeWork.ViewModel", "PracticumHomeWork.ViewModel\PracticumHomeWork.ViewModel.csproj", "{F2C9336D-2B42-469E-89BD-765F3BA00508}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{01ADB8CD-8618-46A8-A9D9-5294EA0D8DE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{F2C9336D-2B42-469E-89BD-765F3BA00508}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2C9336D-2B42-469E-89BD-765F3BA00508}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2C9336D-2B42-469E-89BD-765F3BA00508}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01ADB8CD-8618-46A8-A9D9-5294EA0D8DE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01ADB8CD-8618-46A8-A9D9-5294EA0D8DE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01ADB8CD-8618-46A8-A9D9-5294EA0D8DE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01ADB8CD-8618-46A8-A9D9-5294EA0D8DE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

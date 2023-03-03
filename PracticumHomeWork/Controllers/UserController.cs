@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PracticumHomeWork.Dto.Dtos;
 using PracticumHomeWork.Service.Abstract;
-using PracticumHomeWork.Validations;
+using PracticumHomeWork.Service.Validations;
 
 namespace PracticumHomeWork.Controllers
 {
